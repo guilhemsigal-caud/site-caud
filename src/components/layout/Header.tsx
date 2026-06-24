@@ -140,16 +140,12 @@ export function Header() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between gap-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div
-              className="w-7 h-7 rounded-lg flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, #5b8cff, #7df0c8)" }}
-            >
-              <span className="text-[10px] font-black text-[#0a0c14]">CA</span>
-            </div>
-            <span className="font-bold text-sm tracking-tight text-ca-text hidden sm:block">
-              Collective Audience
-            </span>
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <img
+              src="/logo.svg"
+              alt="Collective Audience"
+              className="h-7 w-auto"
+            />
           </Link>
 
           {/* Desktop nav */}

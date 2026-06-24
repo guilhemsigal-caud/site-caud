@@ -76,14 +76,12 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:col-start-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #5b8cff, #7df0c8)" }}
-              >
-                <span className="text-xs font-black text-[#0a0c14]">CA</span>
-              </div>
-              <span className="font-bold text-sm text-ca-text">Collective Audience</span>
+            <Link href="/" className="flex items-center mb-4">
+              <img
+                src="/logo.svg"
+                alt="Collective Audience"
+                className="h-7 w-auto"
+              />
             </Link>
             <p className="text-xs text-ca-muted leading-relaxed mb-5 max-w-[200px]">
               The Open Web Platform — unifying media, data, and advertising for the cookieless era.
