@@ -62,6 +62,14 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: "Brand-safe, contextual health formats that drive awareness with editorial precision.",
     kpis: [{ label: "Awareness lift", value: "+36%" }, { label: "Brand safety", value: "99%" }, { label: "Context match", value: "97%" }],
     accent: "#7df0c8", tags: ["Healthcare", "OTC", "Wellness"],
+    demos: [
+      { url: "https://demo.collectiveaudience.co/?beop_brand=60b7f2cbb81f0074d380f8bf&beop_content=622a5e5c17c75344d0a55265", label: "Démo 1" },
+      { url: "https://demo.collectiveaudience.co/?beop_brand=5de63c4c46e0fb000144acba&beop_content=60edc787eafa03548154caeb", label: "Démo 2" },
+      { url: "https://demo.collectiveaudience.co/?beop_brand=625f11defa66fd3ace01d3a4&beop_content=633be30e9be4d47413711128", label: "Démo 3" },
+      { url: "https://demo.collectiveaudience.co/?beop_brand=619e7d02828c51664ebc53e7&beop_content=61a78301f4a52c45f9dacfd5", label: "Démo 4" },
+      { url: "https://demo.collectiveaudience.co/?beop_brand=660ec3907bd1df3f45844973&beop_content=67fcc785fd30d544c0ec21bc", label: "Démo 5" },
+      { url: "https://demo.collectiveaudience.co/?beop_brand=602546bce3d2b23b9fa5c51e&beop_content=67fcc426fd30d544c0ea1dec", label: "Démo 6" },
+    ],
   },
   {
     slug: "retail", category: "industries", name: "Retail",
