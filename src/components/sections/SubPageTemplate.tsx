@@ -1,0 +1,50 @@
+import { PillarHero } from "./PillarHero";
+import { FeatureGrid, Feature } from "./FeatureGrid";
+import { CTABanner } from "./CTABanner";
+import { SplitFeature } from "./SplitFeature";
+
+interface Stat { value: string; label: string }
+interface SplitSection {
+  eyebrow: string; headline: string; description: string;
+  bullets: string[]; cta: { label: string; href: string };
+  accent: string; reverse?: boolean; visual: React.ReactNode;
+}
+
+interface SubPageTemplateProps {
+  hero: { eyebrow: string; headline: string; subtitle: string; accent: string; ctaPrimary?: { label: string; href: string }; ctaSecondary?: { label: string; href: string }; stats?: Stat[] };
+  featuresTitle?: string;
+  features?: Feature[];
+  featureCols?: 2 | 3 | 4;
+  splits?: SplitSection[];
+  accent?: string;
+  children?: React.ReactNode;
+}
+
+export function SubPageTemplate({ hero, featuresTitle, features, featureCols = 3, splits, accent, children }: SubPageTemplateProps) {
+  return (
+    <main>
+      <PillarHero {...hero} />
+
+      {(features && features.length > 0) && (
+        <section className="bg-ca-dark py-20">
+          <div className="max-w-6xl mx-auto px-6 md:px-8">
+            {featuresTitle && (
+              <h2 className="text-2xl md:text-3xl font-bold text-ca-text text-center mb-12"
+                style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
+              >
+                {featuresTitle}
+              </h2>
+            )}
+            <FeatureGrid features={features} cols={featureCols} accent={accent ?? hero.accent} />
+          </div>
+        </section>
+      )}
+
+      {splits?.map((s, i) => <SplitFeature key={i} {...s} />)}
+
+      {children}
+
+      <CTABanner />
+    </main>
+  );
+}
