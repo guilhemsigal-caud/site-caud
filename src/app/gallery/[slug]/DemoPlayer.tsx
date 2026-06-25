@@ -1,14 +1,8 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Play } from "lucide-react";
+import { motion } from "framer-motion";
 import type { GalleryDemo } from "@/content/gallery";
-
-// The demo pages are designed for ~375px mobile width
-const IFRAME_W = 375;
-const IFRAME_H = 720;
-const CARD_W  = 260;
-const SCALE   = CARD_W / IFRAME_W;          // ≈ 0.693
-const CARD_H  = Math.round(IFRAME_H * SCALE); // ≈ 499
 
 interface Props {
   demos: GalleryDemo[];
@@ -20,61 +14,101 @@ export function DemoPlayer({ demos, accent, name }: Props) {
   return (
     <div
       className="grid gap-5"
-      style={{ gridTemplateColumns: `repeat(auto-fill, minmax(${CARD_W}px, 1fr))` }}
+      style={{ gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}
     >
       {demos.map((demo, i) => (
-        <a
+        <motion.a
           key={i}
           href={demo.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group block rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.06, duration: 0.35 }}
+          className="group block rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
           style={{
-            borderColor: `${accent}30`,
-            boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+            borderColor: `${accent}35`,
+            boxShadow: "0 2px 16px rgba(0,0,40,0.08)",
           }}
         >
-          {/* ── Iframe miniature ── */}
+          {/* Phone mockup preview area */}
           <div
-            className="relative overflow-hidden bg-white"
-            style={{ height: CARD_H }}
+            className="relative flex items-center justify-center overflow-hidden"
+            style={{
+              height: 320,
+              background: `linear-gradient(145deg, ${accent}12 0%, #eef0fb 100%)`,
+            }}
           >
-            <iframe
-              src={demo.url}
-              loading="lazy"
-              title={demo.label ?? `${name} démo ${i + 1}`}
+            {/* Decorative grid */}
+            <div
+              className="absolute inset-0 opacity-20 pointer-events-none"
               style={{
-                width:  IFRAME_W,
-                height: IFRAME_H,
-                border: "none",
-                display: "block",
-                transform: `scale(${SCALE})`,
-                transformOrigin: "top left",
-                pointerEvents: "none",
+                backgroundImage: `linear-gradient(to right, ${accent}30 1px, transparent 1px), linear-gradient(to bottom, ${accent}30 1px, transparent 1px)`,
+                backgroundSize: "32px 32px",
               }}
             />
 
-            {/* transparent click capture */}
-            <div className="absolute inset-0 z-10" />
-
-            {/* hover overlay */}
+            {/* Phone frame */}
             <div
-              className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-              style={{ background: `${accent}28`, backdropFilter: "blur(3px)" }}
+              className="relative rounded-[28px] border-[3px] overflow-hidden flex flex-col"
+              style={{
+                width: 120,
+                height: 220,
+                borderColor: `${accent}60`,
+                background: "white",
+                boxShadow: `0 8px 32px ${accent}25, 0 2px 8px rgba(0,0,40,0.12)`,
+              }}
+            >
+              {/* Phone notch */}
+              <div className="flex justify-center pt-2 pb-1 flex-shrink-0">
+                <div className="w-10 h-1.5 rounded-full" style={{ background: `${accent}40` }} />
+              </div>
+
+              {/* Screen content simulation */}
+              <div className="flex-1 px-2 pb-2 space-y-1.5 overflow-hidden">
+                <div className="h-2 rounded-full w-full" style={{ background: `${accent}20` }} />
+                <div className="h-1.5 rounded-full w-4/5" style={{ background: `${accent}15` }} />
+                <div className="h-1.5 rounded-full w-3/4" style={{ background: `${accent}15` }} />
+                <div
+                  className="rounded-lg mt-2 flex items-center justify-center"
+                  style={{ height: 56, background: `linear-gradient(135deg, ${accent}25, ${accent}10)`, border: `1px solid ${accent}30` }}
+                >
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: accent }}>
+                    <Play className="w-3 h-3 text-white fill-white" />
+                  </div>
+                </div>
+                <div className="h-1.5 rounded-full w-full mt-2" style={{ background: `${accent}12` }} />
+                <div className="h-1.5 rounded-full w-2/3" style={{ background: `${accent}12` }} />
+                <div className="flex gap-1 mt-1.5">
+                  <div className="h-5 flex-1 rounded" style={{ background: accent, opacity: 0.9 }} />
+                  <div className="h-5 flex-1 rounded border" style={{ borderColor: `${accent}40`, background: `${accent}08` }} />
+                </div>
+              </div>
+
+              {/* Home bar */}
+              <div className="flex justify-center pb-2">
+                <div className="w-8 h-1 rounded-full" style={{ background: `${accent}50` }} />
+              </div>
+            </div>
+
+            {/* Hover overlay */}
+            <div
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              style={{ background: `${accent}18`, backdropFilter: "blur(4px)" }}
             >
               <div
                 className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold shadow-lg"
-                style={{ background: accent, color: "#0a0c14" }}
+                style={{ background: accent, color: "#0e1025" }}
               >
                 Ouvrir <ExternalLink className="w-3.5 h-3.5" />
               </div>
             </div>
           </div>
 
-          {/* ── Label ── */}
+          {/* Label bar */}
           <div
             className="flex items-center justify-between px-4 py-3 border-t"
-            style={{ borderColor: `${accent}20`, background: "#111420" }}
+            style={{ borderColor: `${accent}20`, background: "#f0f2fc" }}
           >
             <span className="text-sm font-semibold text-ca-text">
               {demo.label ?? `Démo ${i + 1}`}
@@ -84,7 +118,7 @@ export function DemoPlayer({ demos, accent, name }: Props) {
               style={{ color: accent }}
             />
           </div>
-        </a>
+        </motion.a>
       ))}
     </div>
   );
