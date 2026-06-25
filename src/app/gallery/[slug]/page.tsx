@@ -36,7 +36,7 @@ export default function GalleryItemPage({ params }: { params: Promise<{ slug: st
               <p className="text-ca-muted leading-relaxed max-w-xl">{lang === "fr" && item.fr ? item.fr.description : item.description}</p>
             </div>
             <div className="flex gap-3 flex-wrap">
-              (lang === "fr" && item.fr ? item.fr.kpis : item.kpis).map((kpi) => (
+              {(lang === "fr" && item.fr ? item.fr.kpis : item.kpis).map((kpi) => (
                 <div key={kpi.label} className="rounded-xl border px-4 py-3 text-center min-w-[80px]" style={{ borderColor: `${item.accent}35`, background: `${item.accent}10`, boxShadow: "0 2px 12px rgba(0,0,40,0.06)" }}>
                   <div className="text-xl font-bold" style={{ color: item.accent }}>{kpi.value}</div>
                   <div className="text-[10px] text-ca-muted mt-0.5">{kpi.label}</div>
