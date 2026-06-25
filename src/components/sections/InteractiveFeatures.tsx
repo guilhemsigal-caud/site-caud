@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Pause, Play } from "lucide-react";
 import Link from "next/link";
 import { useLang } from "@/lib/i18n";
 
@@ -69,27 +69,54 @@ function VisualPanel({ item, accent }: { item: (typeof COPY.en.items)[0]; accent
   );
 }
 
+const DURATION = 5000;
+
 export function InteractiveFeatures() {
   const [active, setActive] = useState(0);
   const [switchCount, setSwitchCount] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const startTimeRef = useRef(Date.now());
+  const pauseElapsedRef = useRef(0);
   const { lang } = useLang();
   const c = COPY[lang];
   const item = c.items[active];
   const accent = ACCENTS[active];
 
-  // Auto-advance: 5s timer resets every time active changes
+  // Auto-advance timer — restarts when active changes or when unpaused
   useEffect(() => {
+    if (paused) return;
+    const elapsed = Date.now() - startTimeRef.current;
+    const remaining = Math.max(100, DURATION - elapsed);
     const timer = setTimeout(() => {
+      startTimeRef.current = Date.now();
+      pauseElapsedRef.current = 0;
       setActive(prev => (prev + 1) % c.items.length);
       setSwitchCount(n => n + 1);
-    }, 5000);
+    }, remaining);
     return () => clearTimeout(timer);
-  }, [active, c.items.length]);
+  }, [active, paused, c.items.length]);
 
   const handleTabClick = (i: number) => {
+    startTimeRef.current = Date.now();
+    pauseElapsedRef.current = 0;
+    setPaused(false);
     setActive(i);
     setSwitchCount(n => n + 1);
   };
+
+  const handlePauseToggle = () => {
+    if (!paused) {
+      // Snapshot elapsed time so resume knows where to continue
+      pauseElapsedRef.current = Date.now() - startTimeRef.current;
+      setPaused(true);
+    } else {
+      // Shift startTime backward by elapsed so remaining is correct
+      startTimeRef.current = Date.now() - pauseElapsedRef.current;
+      setPaused(false);
+    }
+  };
+
+  const playState = paused ? "paused" : "running";
 
   return (
     <section className="bg-ca-dark py-24 overflow-hidden">
@@ -106,8 +133,8 @@ export function InteractiveFeatures() {
           <p className="text-ca-muted text-lg max-w-xl mx-auto">{c.subtitle}</p>
         </motion.div>
 
-        {/* Tabs with progress fill + character reveal */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        {/* Tabs with progress fill + character reveal + pause button */}
+        <div className="flex flex-wrap justify-center items-center gap-2 mb-10">
           {c.items.map((f, i) => (
             <button
               key={f.tab}
@@ -119,35 +146,55 @@ export function InteractiveFeatures() {
             >
               {active === i ? (
                 <>
-                  {/* Animated fill background */}
-                  <motion.div
+                  {/* CSS fill — pausable via animation-play-state */}
+                  <div
                     key={switchCount}
                     className="absolute inset-0 rounded-full"
-                    style={{ background: ACCENTS[i], transformOrigin: "left center" }}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 5, ease: "linear" }}
+                    style={{
+                      background: ACCENTS[i],
+                      transformOrigin: "left center",
+                      animation: `tabFill ${DURATION}ms linear forwards`,
+                      animationPlayState: playState,
+                    }}
                   />
-                  {/* Muted text — visible on the unfilled portion */}
+                  {/* Muted text — visible on unfilled portion */}
                   <span className="relative z-10 select-none" style={{ color: "#5a6480" }}>
                     {f.tab}
                   </span>
-                  {/* Dark text clipped to the filled area only — creates the reveal effect */}
-                  <motion.span
+                  {/* Dark text revealed over filled area */}
+                  <span
                     key={`t-${switchCount}`}
                     className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none text-sm font-semibold select-none"
-                    style={{ color: "#0e1025", clipPath: "inset(0 100% 0 0)" }}
-                    animate={{ clipPath: "inset(0 0% 0 0)" }}
-                    transition={{ duration: 5, ease: "linear" }}
+                    style={{
+                      color: "#0e1025",
+                      animation: `tabTextReveal ${DURATION}ms linear forwards`,
+                      animationPlayState: playState,
+                    }}
                   >
                     {f.tab}
-                  </motion.span>
+                  </span>
                 </>
               ) : (
                 <span className="relative z-10" style={{ color: "#5a6480" }}>{f.tab}</span>
               )}
             </button>
           ))}
+
+          {/* Separator */}
+          <div className="w-px h-5 mx-1 opacity-40" style={{ background: "#d0d8f0" }} />
+
+          {/* Pause / Play button */}
+          <button
+            onClick={handlePauseToggle}
+            className="w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-200 hover:border-ca-blue/40 hover:text-ca-blue"
+            style={{ borderColor: "rgba(0,0,30,0.12)", color: "#5a6480" }}
+            aria-label={paused ? (lang === "fr" ? "Reprendre" : "Resume") : (lang === "fr" ? "Pause" : "Pause")}
+            title={paused ? (lang === "fr" ? "Reprendre" : "Resume") : (lang === "fr" ? "Mettre en pause" : "Pause")}
+          >
+            {paused
+              ? <Play className="w-3.5 h-3.5 ml-0.5" />
+              : <Pause className="w-3.5 h-3.5" />}
+          </button>
         </div>
 
         {/* Content */}

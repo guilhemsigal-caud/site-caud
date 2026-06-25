@@ -77,6 +77,16 @@ body {
 .glow-mint  { box-shadow: 0 0 40px rgba(7, 226, 220, 0.25); }
 .glow-violet { box-shadow: 0 0 40px rgba(123, 63, 255, 0.3); }
 
+/* Tab fill + text reveal animations (pausable via animation-play-state) */
+@keyframes tabFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes tabTextReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
 .marquee-mask {
   mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
