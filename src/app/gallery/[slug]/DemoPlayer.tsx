@@ -2,7 +2,7 @@
 
 import { ExternalLink, Play } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import type { GalleryDemo } from "@/content/gallery";
 
 interface Props {
@@ -11,7 +11,9 @@ interface Props {
   name: string;
 }
 
-/* ── Script-based embed (tw.collectiveaudience.co) ───────────────────────── */
+/* ── Script-based embed via srcdoc iframe ────────────────────────────────── */
+// Using iframe srcdoc so the script runs in a real HTML context where
+// document.currentScript is non-null (dynamic DOM injection breaks this).
 function ScriptCreativeCard({ demo, accent, index }: { demo: GalleryDemo; accent: string; index: number }) {
   const embedId = useMemo(() => {
     try {
@@ -22,24 +24,22 @@ function ScriptCreativeCard({ demo, accent, index }: { demo: GalleryDemo; accent
     }
   }, [demo.scriptUrl, index]);
 
-  useEffect(() => {
-    // Small delay to ensure the container div is fully in the DOM
-    const t = setTimeout(() => {
-      document.querySelectorAll(`script[data-creative="${embedId}"]`).forEach(s => s.remove());
-
-      const script = document.createElement("script");
-      script.src = demo.scriptUrl!;
-      script.setAttribute("class", "CreativeConnect");
-      script.setAttribute("data-creative", embedId);
-      // Append to body (not head) so script has access to full DOM
-      document.body.appendChild(script);
-    }, 50);
-
-    return () => {
-      clearTimeout(t);
-      document.querySelectorAll(`script[data-creative="${embedId}"]`).forEach(s => s.remove());
-    };
-  }, [demo.scriptUrl, embedId]);
+  const srcDoc = useMemo(() => `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; }
+  #${embedId} { width: 100%; min-height: 300px; }
+</style>
+</head>
+<body>
+<div id="${embedId}"></div>
+<script src="${demo.scriptUrl}" class="CreativeConnect" async><\/script>
+</body>
+</html>`, [demo.scriptUrl, embedId]);
 
   return (
     <motion.div
@@ -49,12 +49,14 @@ function ScriptCreativeCard({ demo, accent, index }: { demo: GalleryDemo; accent
       className="rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1"
       style={{ borderColor: `${accent}35`, boxShadow: "0 2px 16px rgba(0,0,40,0.08)" }}
     >
-      {/* Live creative preview */}
-      <div
-        className="relative bg-white overflow-auto"
-        style={{ minHeight: 320, maxHeight: 520 }}
-      >
-        <div id={embedId} className="w-full" />
+      {/* Live creative preview inside isolated iframe */}
+      <div className="relative bg-white" style={{ height: 400 }}>
+        <iframe
+          srcDoc={srcDoc}
+          style={{ width: "100%", height: "100%", border: "none" }}
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          title={demo.label ?? `Démo ${index + 1}`}
+        />
       </div>
 
       {/* Label bar */}
