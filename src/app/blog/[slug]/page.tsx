@@ -36,8 +36,8 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           </div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug mb-5" style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{post.title}</h1>
           <p className="text-ca-muted text-lg leading-relaxed mb-10 pb-10 border-b border-ca-border">{post.excerpt}</p>
-          {post.body && (
-            <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: post.body }} />
+          {post.content && (
+            <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
           )}
         </div>
       </section>
