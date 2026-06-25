@@ -106,7 +106,7 @@ export function InteractiveFeatures() {
           <p className="text-ca-muted text-lg max-w-xl mx-auto">{c.subtitle}</p>
         </motion.div>
 
-        {/* Tabs with progress fill */}
+        {/* Tabs with progress fill + character reveal */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {c.items.map((f, i) => (
             <button
@@ -117,23 +117,35 @@ export function InteractiveFeatures() {
                 ? { border: `1px solid ${ACCENTS[i]}60`, boxShadow: `0 0 20px ${ACCENTS[i]}35`, minWidth: 110 }
                 : { border: "1px solid rgba(0,0,30,0.1)", minWidth: 110 }}
             >
-              {/* Progress fill — only on active tab, resets via switchCount key */}
-              {active === i && (
-                <motion.div
-                  key={switchCount}
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: ACCENTS[i], transformOrigin: "left center" }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 5, ease: "linear" }}
-                />
+              {active === i ? (
+                <>
+                  {/* Animated fill background */}
+                  <motion.div
+                    key={switchCount}
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: ACCENTS[i], transformOrigin: "left center" }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 5, ease: "linear" }}
+                  />
+                  {/* Muted text — visible on the unfilled portion */}
+                  <span className="relative z-10 select-none" style={{ color: "#5a6480" }}>
+                    {f.tab}
+                  </span>
+                  {/* Dark text clipped to the filled area only — creates the reveal effect */}
+                  <motion.span
+                    key={`t-${switchCount}`}
+                    className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none text-sm font-semibold select-none"
+                    style={{ color: "#0e1025", clipPath: "inset(0 100% 0 0)" }}
+                    animate={{ clipPath: "inset(0 0% 0 0)" }}
+                    transition={{ duration: 5, ease: "linear" }}
+                  >
+                    {f.tab}
+                  </motion.span>
+                </>
+              ) : (
+                <span className="relative z-10" style={{ color: "#5a6480" }}>{f.tab}</span>
               )}
-              <span
-                className="relative z-10"
-                style={{ color: active === i ? "#0e1025" : "#5a6480" }}
-              >
-                {f.tab}
-              </span>
             </button>
           ))}
         </div>
