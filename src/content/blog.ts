@@ -7,6 +7,11 @@ export interface BlogPost {
   readTime: string;
   accent: string;
   content: string;
+  fr?: {
+    title: string;
+    excerpt: string;
+    readTime: string;
+  };
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -18,6 +23,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-06-10",
     readTime: "8 min read",
     accent: "#5b8cff",
+    fr: { title: "L'ère sans cookies : guide de survie pour les éditeurs", excerpt: "Les cookies tiers ont disparu. Les éditeurs ont besoin d'une stratégie de données first-party. Voici comment en construire une durable.", readTime: "8 min de lecture" },
     content: `The deprecation of third-party cookies is not a future event. It's happening now. Chrome has disabled cookies for a growing percentage of users, Safari has blocked them for years, and Firefox follows suit. For publishers, this means one thing: the era of monetizing anonymous audience data is over.
 
 **The stakes for publishers**
@@ -64,6 +70,7 @@ The cookieless transition is not a threat. It's an opportunity to build a more s
     date: "2025-05-28",
     readTime: "6 min read",
     accent: "#07e2dc",
+    fr: { title: "Pourquoi les métriques d'attention surpassent le CTR pour les campagnes de marque", excerpt: "Le taux de clic n'a jamais été un bon indicateur de l'impact de marque. Le temps d'attention, le dwell time et l'interaction racontent une bien meilleure histoire.", readTime: "6 min de lecture" },
     content: `The advertising industry has spent 30 years optimizing for the wrong metric. Click-through rate (CTR) was never a meaningful proxy for brand recall, purchase intent, or business outcomes, yet it became the default measurement for digital campaigns.
 
 The result: an industry that optimized for bots, banner blindness, and accidental clicks, while genuine brand impact went unmeasured.
@@ -117,6 +124,7 @@ The shift to attention metrics is not just academic. It changes how budgets shou
     date: "2025-05-15",
     readTime: "5 min read",
     accent: "#7b3fff",
+    fr: { title: "Lancement d'AudienceCloud : la plateforme du web ouvert", excerpt: "Nous lançons officiellement AudienceCloud, l'OS unifié connectant 200+ éditeurs et 150+ marques en une seule plateforme ouverte.", readTime: "5 min de lecture" },
     content: `Today marks a significant milestone for Collective Audience and for the open web ecosystem we're building. We're officially launching **AudienceCloud**, our unified platform connecting publishers, advertisers, and audience data into one modular, open OS.
 
 **Why we built AudienceCloud**
@@ -157,6 +165,7 @@ For publishers and advertisers who want early access, reach out to our team at h
     date: "2025-04-20",
     readTime: "7 min read",
     accent: "#5b8cff",
+    fr: { title: "De BeOp & NYIAX à Collective Audience", excerpt: "L'histoire de la fusion de deux entreprises pionnières pour construire la plateforme du web ouvert que l'industrie attendait.", readTime: "7 min de lecture" },
     content: `Every significant company is the result of timing, people, and a clear-eyed view of where an industry is going. Collective Audience is no different. Our story starts with two companies that each saw part of the picture.
 
 **BeOp: The publisher side**
@@ -199,6 +208,7 @@ That belief is what brought BeOp and NYIAX together. And it's what drives Collec
     date: "2025-04-05",
     readTime: "10 min read",
     accent: "#07e2dc",
+    fr: { title: "Étude : les formats conversationnels livrent 3× l'attribution de marque", excerpt: "Une recherche indépendante confirme que les formats conversationnels surpassent systématiquement le display standard sur chaque métrique de marque.", readTime: "10 min de lecture" },
     content: `We commissioned an independent meta-analysis of 50+ campaigns run through our platform, using certified brand lift methodologies from Lucid Research and Dynata. The findings confirm what our clients have been experiencing. They're significant enough to change how the industry thinks about format selection.
 
 **Key findings**
@@ -252,6 +262,7 @@ The full study is available on request. Contact research@collectiveaudience.co f
     date: "2025-03-18",
     readTime: "9 min read",
     accent: "#7b3fff",
+    fr: { title: "RGPD et données first-party : rester conforme à grande échelle", excerpt: "Un guide pratique sur la gestion du consentement, la gouvernance des données et la construction d'une audience conforme pour les éditeurs européens.", readTime: "9 min de lecture" },
     content: `GDPR compliance in digital advertising is not optional. It's not as complex as many publishers fear. The core requirement is consent: users must actively agree to have their data collected and used for advertising purposes.
 
 The challenge is building a consent architecture that is both legally robust and commercially viable. Here's how European publishers can do it.

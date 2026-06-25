@@ -14,6 +14,10 @@ export interface GalleryItem {
   accent: string;
   tags: string[];
   demos?: GalleryDemo[];
+  fr?: {
+    description: string;
+    kpis: { label: string; value: string }[];
+  };
 }
 
 export const GALLERY_ITEMS: GalleryItem[] = [
@@ -34,6 +38,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: "High-attention formats for automotive brands, from model launches to test-drive conversions.",
     kpis: [{ label: "Brand lift", value: "+52%" }, { label: "Test drive intent", value: "+38%" }, { label: "Attention", value: "38s" }],
     accent: "#07e2dc", tags: ["Audi", "BMW", "Renault"],
+    fr: { description: "Formats haute attention pour les marques automobiles, des lancements de modèles aux conversions d'essai.", kpis: [{ label: "Lift de marque", value: "+52%" }, { label: "Intention d'essai", value: "+38%" }, { label: "Attention", value: "38s" }] },
     demos: [
       { url: "https://demo.collectiveaudience.co/?beop_brand=5a4c9fc4c9e77c00015c3811&beop_content=6250242f01322c33d37e593f&sa=1", label: "Démo 1" },
       { url: "https://demo.collectiveaudience.co/?beop_brand=5e1317b646e0fb00012a5310&beop_content=67f7c91ffd30d544c0c52f86", label: "Démo 2" },
@@ -49,6 +54,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: "Conversational and visual formats for beauty brands driving purchase intent and product discovery.",
     kpis: [{ label: "Purchase intent", value: "+44%" }, { label: "Interaction rate", value: "1.8%" }, { label: "Viewability", value: "94%" }],
     accent: "#07e2dc", tags: ["L'Oréal", "LVMH", "Sanofi"],
+    fr: { description: "Formats conversationnels et visuels pour les marques beauté, stimulant l'intention d'achat et la découverte produit.", kpis: [{ label: "Intention d'achat", value: "+44%" }, { label: "Taux d'interaction", value: "1,8%" }, { label: "Visibilité", value: "94%" }] },
     demos: [
       { url: "https://demo.collectiveaudience.co/?beop_brand=5de63c4c46e0fb000144acba&beop_content=606f12ef4e99b70a6814689b&sa=1", label: "Démo 1" },
       { url: "https://demo.collectiveaudience.co/?beop_brand=603fb19efa390a60cb8164ca&beop_content=609043057a87004a98d65791", label: "Démo 2" },
@@ -62,6 +68,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: "Brand-safe, contextual health formats that drive awareness with editorial precision.",
     kpis: [{ label: "Awareness lift", value: "+36%" }, { label: "Brand safety", value: "99%" }, { label: "Context match", value: "97%" }],
     accent: "#07e2dc", tags: ["Healthcare", "OTC", "Wellness"],
+    fr: { description: "Formats contextuels et brand-safe pour le secteur santé, générant de la notoriété avec précision éditoriale.", kpis: [{ label: "Lift de notoriété", value: "+36%" }, { label: "Brand safety", value: "99%" }, { label: "Pertinence contexte", value: "97%" }] },
     demos: [
       { url: "https://demo.collectiveaudience.co/?beop_brand=60b7f2cbb81f0074d380f8bf&beop_content=622a5e5c17c75344d0a55265", label: "Démo 1" },
       { url: "https://demo.collectiveaudience.co/?beop_brand=5de63c4c46e0fb000144acba&beop_content=60edc787eafa03548154caeb", label: "Démo 2" },
@@ -76,24 +83,28 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: "Performance-driven formats for retail brands optimizing for foot traffic and online conversions.",
     kpis: [{ label: "ROAS", value: "3.2×" }, { label: "Foot traffic lift", value: "+29%" }, { label: "Interaction", value: "1.4%" }],
     accent: "#07e2dc", tags: ["Carrefour", "FNAC", "Galeries Lafayette"],
+    fr: { description: "Formats orientés performance pour les marques retail, optimisant le trafic en point de vente et les conversions en ligne.", kpis: [{ label: "ROAS", value: "3,2×" }, { label: "Hausse trafic PDV", value: "+29%" }, { label: "Interaction", value: "1,4%" }] },
   },
   {
     slug: "finance", category: "industries", name: "Finance Perso",
     description: "Trust-building formats for fintech and banking brands driving sign-up intent.",
     kpis: [{ label: "Sign-up intent", value: "+35%" }, { label: "Completion rate", value: "72%" }, { label: "CTR", value: "2.1%" }],
     accent: "#07e2dc", tags: ["Boursorama", "BNP", "Fortuneo"],
+    fr: { description: "Formats inspirant confiance pour les marques fintech et bancaires, stimulant l'intention d'inscription.", kpis: [{ label: "Intention d'inscription", value: "+35%" }, { label: "Taux de complétion", value: "72%" }, { label: "CTR", value: "2,1%" }] },
   },
   {
     slug: "spiritueux", category: "industries", name: "Spiritueux",
     description: "Premium brand storytelling formats for spirits and luxury beverage categories.",
     kpis: [{ label: "Brand affinity", value: "+48%" }, { label: "Attention", value: "41s" }, { label: "Completion", value: "81%" }],
     accent: "#07e2dc", tags: ["Premium", "Luxury", "Spirits"],
+    fr: { description: "Formats de brand storytelling premium pour les spiritueux et les boissons de luxe.", kpis: [{ label: "Affinité de marque", value: "+48%" }, { label: "Attention", value: "41s" }, { label: "Complétion", value: "81%" }] },
   },
   {
     slug: "droit-politique", category: "industries", name: "Droit & Politique",
     description: "Contextual formats targeting engaged civic readers on premium news environments.",
     kpis: [{ label: "Engagement", value: "1.9%" }, { label: "Context score", value: "98%" }, { label: "Completion", value: "76%" }],
     accent: "#07e2dc", tags: ["News", "Civic", "Legal"],
+    fr: { description: "Formats contextuels ciblant les lecteurs civiques engagés sur des environnements médias premium.", kpis: [{ label: "Engagement", value: "1,9%" }, { label: "Score contextuel", value: "98%" }, { label: "Complétion", value: "76%" }] },
   },
   {
     slug: "immersif", category: "innovations", name: "Immersif",

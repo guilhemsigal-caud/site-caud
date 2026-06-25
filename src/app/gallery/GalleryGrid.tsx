@@ -45,9 +45,9 @@ export function GalleryGrid() {
                     )}
                   </div>
                   <h3 className="text-xl font-bold text-ca-text mb-2 leading-snug">{NAMES[item.slug]?.[lang] ?? item.name}</h3>
-                  <p className="text-sm text-ca-muted leading-relaxed flex-1 mb-5">{item.description}</p>
+                  <p className="text-sm text-ca-muted leading-relaxed flex-1 mb-5">{lang === "fr" && item.fr ? item.fr.description : item.description}</p>
                   <div className="flex flex-wrap gap-3 pt-4 border-t mb-4" style={{ borderColor: `${item.accent}25` }}>
-                    {item.kpis.map((kpi) => (
+                    {(lang === "fr" && item.fr ? item.fr.kpis : item.kpis).map((kpi) => (
                       <div key={kpi.label}><span className="text-sm font-bold" style={{ color: item.accent }}>{kpi.value}</span><span className="text-[10px] text-ca-muted ml-1">{kpi.label}</span></div>
                     ))}
                   </div>

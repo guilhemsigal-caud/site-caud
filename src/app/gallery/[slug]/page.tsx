@@ -33,10 +33,10 @@ export default function GalleryItemPage({ params }: { params: Promise<{ slug: st
             <div className="flex-1">
               <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full border mb-3" style={{ color: item.accent, borderColor: `${item.accent}30`, background: `${item.accent}08` }}>{item.category}</span>
               <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2" style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{item.name}</h1>
-              <p className="text-ca-muted leading-relaxed max-w-xl">{item.description}</p>
+              <p className="text-ca-muted leading-relaxed max-w-xl">{lang === "fr" && item.fr ? item.fr.description : item.description}</p>
             </div>
             <div className="flex gap-3 flex-wrap">
-              {item.kpis.map((kpi) => (
+              (lang === "fr" && item.fr ? item.fr.kpis : item.kpis).map((kpi) => (
                 <div key={kpi.label} className="rounded-xl border px-4 py-3 text-center min-w-[80px]" style={{ borderColor: `${item.accent}35`, background: `${item.accent}10`, boxShadow: "0 2px 12px rgba(0,0,40,0.06)" }}>
                   <div className="text-xl font-bold" style={{ color: item.accent }}>{kpi.value}</div>
                   <div className="text-[10px] text-ca-muted mt-0.5">{kpi.label}</div>

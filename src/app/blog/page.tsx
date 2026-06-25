@@ -33,10 +33,10 @@ export default function BlogPage() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border" style={{ color: featured.accent, borderColor: `${featured.accent}30`, background: `${featured.accent}0a` }}>{featured.category}</span>
                 <span className="text-[10px] text-ca-muted">{c.featured}</span>
-                <span className="text-[10px] text-ca-muted">· {featured.readTime}</span>
+                <span className="text-[10px] text-ca-muted">· {lang === "fr" && featured.fr ? featured.fr.readTime : featured.readTime}</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-ca-text mb-3 group-hover:text-white transition-colors leading-snug">{featured.title}</h2>
-              <p className="text-ca-muted leading-relaxed mb-5">{featured.excerpt}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-ca-text mb-3 group-hover:text-white transition-colors leading-snug">{lang === "fr" && featured.fr ? featured.fr.title : featured.title}</h2>
+              <p className="text-ca-muted leading-relaxed mb-5">{lang === "fr" && featured.fr ? featured.fr.excerpt : featured.excerpt}</p>
               <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: featured.accent }}>{c.read} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
             </div>
             <div className="md:w-48 flex-shrink-0 flex flex-col justify-between">
@@ -54,10 +54,10 @@ export default function BlogPage() {
                 <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: `linear-gradient(to right,transparent 5%,${post.accent} 40%,${post.accent} 60%,transparent 95%)` }} />
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border" style={{ color: post.accent, borderColor: `${post.accent}30`, background: `${post.accent}0a` }}>{post.category}</span>
-                  <span className="text-[10px] text-ca-muted">{post.readTime}</span>
+                  <span className="text-[10px] text-ca-muted">{lang === "fr" && post.fr ? post.fr.readTime : post.readTime}</span>
                 </div>
-                <h3 className="text-base font-bold text-ca-text mb-2 leading-snug group-hover:text-white transition-colors flex-1">{post.title}</h3>
-                <p className="text-xs text-ca-muted leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
+                <h3 className="text-base font-bold text-ca-text mb-2 leading-snug group-hover:text-white transition-colors flex-1">{lang === "fr" && post.fr ? post.fr.title : post.title}</h3>
+                <p className="text-xs text-ca-muted leading-relaxed mb-4 line-clamp-3">{lang === "fr" && post.fr ? post.fr.excerpt : post.excerpt}</p>
                 <div className="flex items-center justify-between pt-3 border-t" style={{ borderColor: `${post.accent}18` }}>
                   <span className="text-[10px] text-ca-muted">{new Date(post.date).toLocaleDateString(dateLocale, { month: "short", year: "numeric" })}</span>
                   <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: post.accent }}>{c.readShort} <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" /></span>

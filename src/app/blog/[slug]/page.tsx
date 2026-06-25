@@ -30,12 +30,12 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           </Link>
           <div className="flex items-center gap-3 mb-5">
             <span className="text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border" style={{ color: post.accent, borderColor: `${post.accent}30`, background: `${post.accent}08` }}>{post.category}</span>
-            <span className="text-[10px] text-ca-muted">{post.readTime}</span>
+            <span className="text-[10px] text-ca-muted">{lang === "fr" && post.fr ? post.fr.readTime : post.readTime}</span>
             <span className="text-[10px] text-ca-muted">·</span>
             <span className="text-[10px] text-ca-muted">{new Date(post.date).toLocaleDateString(dateLocale, { month: "long", day: "numeric", year: "numeric" })}</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug mb-5" style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{post.title}</h1>
-          <p className="text-ca-muted text-lg leading-relaxed mb-10 pb-10 border-b border-ca-border">{post.excerpt}</p>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug mb-5" style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{lang === "fr" && post.fr ? post.fr.title : post.title}</h1>
+          <p className="text-ca-muted text-lg leading-relaxed mb-10 pb-10 border-b border-ca-border">{lang === "fr" && post.fr ? post.fr.excerpt : post.excerpt}</p>
           {post.content && (
             <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
           )}
