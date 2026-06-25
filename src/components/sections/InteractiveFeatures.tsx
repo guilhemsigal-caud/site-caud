@@ -161,12 +161,12 @@ export function InteractiveFeatures() {
                   <span className="relative z-10 select-none" style={{ color: "#5a6480" }}>
                     {f.tab}
                   </span>
-                  {/* Dark text revealed over filled area */}
+                  {/* White text revealed over filled area */}
                   <span
                     key={`t-${switchCount}`}
                     className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none text-sm font-semibold select-none"
                     style={{
-                      color: "#0e1025",
+                      color: "white",
                       animation: `tabTextReveal ${DURATION}ms linear forwards`,
                       animationPlayState: playState,
                     }}
