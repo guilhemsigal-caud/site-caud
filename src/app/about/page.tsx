@@ -20,7 +20,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-ca-blue/30 bg-ca-blue/8 text-xs font-semibold tracking-widest uppercase text-ca-blue mb-6">Our Mission</div>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-5" style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-5" style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Built for the open web.
               </h1>
               <p className="text-ca-muted text-lg leading-relaxed mb-6">Collective Audience was born from the merger of BeOp — France's leading conversational ad tech — and NYIAX — the New York-based premium audience marketplace. Together, we're building the infrastructure for a better, fairer, cookieless web.</p>

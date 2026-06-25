@@ -7,7 +7,7 @@ export default function ContactPage() {
       <div className="max-w-5xl mx-auto px-6 md:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-ca-blue/30 bg-ca-blue/8 text-xs font-semibold tracking-widest uppercase text-ca-blue mb-6">Contact</div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4" style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Let's talk.</h1>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4" style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Let's talk.</h1>
           <p className="text-ca-muted text-lg max-w-lg mx-auto">Whether you're a publisher, advertiser, or investor — our team is here.</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">

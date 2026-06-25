@@ -45,7 +45,7 @@ export default function AdvertisersPage() {
             For Advertisers
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.07] mb-6"
-            style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
             High performance advertising platform.
           </h1>
           <p className="text-ca-muted text-xl leading-relaxed max-w-2xl mx-auto mb-10">
@@ -78,7 +78,7 @@ export default function AdvertisersPage() {
       <section className="bg-ca-dark py-24">
         <div className="max-w-5xl mx-auto px-6 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-14"
-            style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
             Why standard advertising isn't enough.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
@@ -148,7 +148,7 @@ export default function AdvertisersPage() {
             <div className="h-px w-12 bg-ca-mint mb-6 rounded-full" />
             <span className="text-xs font-semibold tracking-widest uppercase text-ca-mint block mb-3">Self-serve platform</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
-              style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Launch in minutes. Optimize in real time.
             </h2>
             <p className="text-ca-muted leading-relaxed mb-6">AudienceDesk gives you full control over your campaigns — or let our managed service team run them for you.</p>
@@ -166,7 +166,7 @@ export default function AdvertisersPage() {
             <div className="h-px w-12 bg-ca-blue mb-6 rounded-full" />
             <span className="text-xs font-semibold tracking-widest uppercase text-ca-blue block mb-3">Cookieless targeting</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
-              style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Precise targeting without cookies.
             </h2>
             <p className="text-ca-muted leading-relaxed mb-6">Our semantic AI reads every article in real time to deliver your message at the exact right moment — no user tracking required.</p>
@@ -209,7 +209,7 @@ export default function AdvertisersPage() {
         <div className="max-w-5xl mx-auto px-6 md:px-8 text-center">
           <span className="text-xs font-semibold tracking-widest uppercase text-ca-violet block mb-3">High-attention formats</span>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
-            style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
             Formats readers actually engage with.
           </h2>
           <p className="text-ca-muted mb-10 max-w-xl mx-auto">From conversational Q&A to immersive video — discover all our interactive ad formats with live demos and real KPIs.</p>

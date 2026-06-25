@@ -48,7 +48,7 @@ export default function PublishersPage() {
             For Publishers
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.07] mb-6"
-            style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
             A new model for publishers.
           </h1>
           <p className="text-ca-muted text-xl leading-relaxed max-w-2xl mx-auto mb-10">
@@ -98,7 +98,7 @@ export default function PublishersPage() {
             <div className="h-px w-12 bg-ca-blue mb-6 rounded-full" />
             <span className="text-xs font-semibold tracking-widest uppercase text-ca-blue block mb-3">Sales teams</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
-              style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               The simplest ad platform for publishers.
             </h2>
             <p className="text-ca-muted leading-relaxed mb-6">One platform to manage header bidding, direct deals, and programmatic — with real-time floor pricing and intelligent backfill. No black boxes.</p>
@@ -180,7 +180,7 @@ export default function PublishersPage() {
             <div className="h-px w-12 bg-ca-mint mb-6 rounded-full" />
             <span className="text-xs font-semibold tracking-widest uppercase text-ca-mint block mb-3">Marketing teams</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
-              style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Own your audience. No intermediaries.
             </h2>
             <p className="text-ca-muted leading-relaxed mb-6">Every reader who interacts with your content enriches your first-party CRM. Build real audience intelligence without relying on third-party data brokers.</p>
@@ -202,7 +202,7 @@ export default function PublishersPage() {
             <div className="h-px w-12 bg-ca-violet mb-6 rounded-full" />
             <span className="text-xs font-semibold tracking-widest uppercase text-ca-violet block mb-3">Editorial teams</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
-              style={{ background: "linear-gradient(135deg,#f0f2ff 40%,rgba(240,242,255,0.5) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Formats your readers actually engage with.
             </h2>
             <p className="text-ca-muted leading-relaxed mb-6">Inline conversational and interactive formats deployed directly within your articles. They generate 34 seconds of average attention — and never interrupt the reading experience.</p>
