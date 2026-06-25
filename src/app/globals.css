@@ -87,6 +87,19 @@ body {
   to   { clip-path: inset(0 0% 0 0); }
 }
 
+/* WhoWeHelp moving glow */
+@keyframes whoGlowMove {
+  0%   { transform: translate(0%,   0%);   opacity: 0.14; }
+  15%  { transform: translate(55%, -15%);  opacity: 0.20; }
+  30%  { transform: translate(72%,  45%);  opacity: 0; }
+  38%  { transform: translate(72%,  45%);  opacity: 0; }
+  50%  { transform: translate(-5%,  65%);  opacity: 0.16; }
+  65%  { transform: translate(35%,  80%);  opacity: 0.22; }
+  78%  { transform: translate(-18%, 25%);  opacity: 0; }
+  86%  { transform: translate(-18%, 25%);  opacity: 0; }
+  100% { transform: translate(0%,   0%);   opacity: 0.14; }
+}
+
 .marquee-mask {
   mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
