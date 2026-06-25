@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,9 +26,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-ca-dark text-ca-text">
-        <Header />
-        <div className="flex-1 pt-16">{children}</div>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <div className="flex-1 pt-16">{children}</div>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
