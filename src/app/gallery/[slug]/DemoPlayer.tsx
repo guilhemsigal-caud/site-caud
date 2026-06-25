@@ -23,17 +23,23 @@ function ScriptCreativeCard({ demo, accent, index }: { demo: GalleryDemo; accent
   }, [demo.scriptUrl, index]);
 
   useEffect(() => {
-    // Remove any pre-existing script with the same src to avoid duplicates
-    document.querySelectorAll(`script[src="${demo.scriptUrl}"]`).forEach(s => s.remove());
+    // Small delay to ensure the container div is fully in the DOM
+    const t = setTimeout(() => {
+      document.querySelectorAll(`script[data-creative="${embedId}"]`).forEach(s => s.remove());
 
-    const script = document.createElement("script");
-    script.src = demo.scriptUrl!;
-    script.className = "CreativeConnect";
-    script.async = true;
-    document.head.appendChild(script);
+      const script = document.createElement("script");
+      script.src = demo.scriptUrl!;
+      script.setAttribute("class", "CreativeConnect");
+      script.setAttribute("data-creative", embedId);
+      // Append to body (not head) so script has access to full DOM
+      document.body.appendChild(script);
+    }, 50);
 
-    return () => { script.remove(); };
-  }, [demo.scriptUrl]);
+    return () => {
+      clearTimeout(t);
+      document.querySelectorAll(`script[data-creative="${embedId}"]`).forEach(s => s.remove());
+    };
+  }, [demo.scriptUrl, embedId]);
 
   return (
     <motion.div
