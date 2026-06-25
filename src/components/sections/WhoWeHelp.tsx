@@ -27,8 +27,8 @@ const COPY = {
     },
     stats: [
       { value: "200%", label: "Engagement and Attention Lift" },
-      { value: "2.9×", label: "More Brand Recognition" },
-      { value: "34s", label: "Average Time Spent per Format" },
+      { value: "2.9X", label: "More Brand Recognition" },
+      { value: "34S", label: "Average Time Spent per Format" },
       { value: "+30%", label: "Time Spent on Advertiser's Site" },
     ],
   },
@@ -39,7 +39,7 @@ const COPY = {
       heading: "pour les éditeurs",
       bullets: [
         "Monétisez l'attention, pas seulement les impressions",
-        "Yield plus élevé grâce aux formats interactifs",
+        "Yield plus élevé via des formats interactifs",
         "Données privacy-safe avec totale transparence",
       ],
     },
@@ -53,8 +53,8 @@ const COPY = {
     },
     stats: [
       { value: "200%", label: "Lift d'engagement et d'attention" },
-      { value: "2,9×", label: "Meilleure reconnaissance de marque" },
-      { value: "34s", label: "Temps moyen passé par format" },
+      { value: "2,9X", label: "Meilleure reconnaissance de marque" },
+      { value: "34S", label: "Temps moyen passé par format" },
       { value: "+30%", label: "Temps passé sur le site annonceur" },
     ],
   },
@@ -65,119 +65,137 @@ export function WhoWeHelp() {
   const c = COPY[lang];
 
   return (
-    <section className="px-4 md:px-6 py-4">
-    <div
-      className="relative overflow-hidden rounded-3xl w-full"
-      style={{ background: "#07080f" }}
-    >
-      {/* Moving white glow */}
+    <section className="px-4 md:px-5 py-4">
       <div
-        className="absolute pointer-events-none"
-        style={{
-          top: "-10%",
-          left: "-10%",
-          width: "55%",
-          height: "90%",
-          background: "radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 65%)",
-          animation: "whoGlowMove 9s ease-in-out infinite",
-          willChange: "transform, opacity",
-        }}
-      />
+        className="relative overflow-hidden rounded-3xl w-full"
+        style={{ background: "#07080f", minHeight: 580 }}
+      >
+        {/* Animated white glow — large, bright, moving */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            top: "-20%",
+            left: "-15%",
+            width: "70%",
+            height: "120%",
+            background:
+              "radial-gradient(ellipse at center, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)",
+            animation: "whoGlowMove 9s ease-in-out infinite",
+            willChange: "transform, opacity",
+          }}
+        />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
+        <div className="relative z-10 px-10 md:px-16 py-16 md:py-20 flex flex-col h-full" style={{ minHeight: 580 }}>
 
-        {/* Top grid: title | publishers | advertisers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-20">
-
-          {/* Title + CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col justify-between"
+          {/* Main grid: title col | publishers col | advertisers col */}
+          <div
+            className="grid flex-1"
+            style={{
+              gridTemplateColumns: "5fr 4fr 4fr",
+              gap: "3rem",
+              flex: 1,
+              minHeight: 360,
+            }}
           >
-            <h2
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white"
-            >
-              {c.title}
-            </h2>
-            <Link
-              href="/about"
-              className="mt-10 inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition-colors duration-200 self-start"
-            >
-              {c.learnMore} <ArrowRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
-
-          {/* Publishers */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-          >
-            <div className="border-t border-white/20 pt-5 mb-6">
-              <span className="text-xl font-bold text-white">{c.publishers.heading}</span>
-            </div>
-            <ul className="space-y-0">
-              {c.publishers.bullets.map((b, i) => (
-                <li
-                  key={i}
-                  className="border-b border-white/10 py-4 text-white/70 text-sm leading-relaxed"
-                >
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Advertisers */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.24 }}
-          >
-            <div className="border-t border-white/20 pt-5 mb-6">
-              <span className="text-xl font-bold text-white">{c.advertisers.heading}</span>
-            </div>
-            <ul className="space-y-0">
-              {c.advertisers.bullets.map((b, i) => (
-                <li
-                  key={i}
-                  className="border-b border-white/10 py-4 text-white/70 text-sm leading-relaxed"
-                >
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-          {c.stats.map((s, i) => (
+            {/* Left: title top, button bottom */}
             <motion.div
-              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col justify-between"
             >
-              <div
-                className="text-5xl md:text-6xl font-bold mb-2"
-                style={{ color: "#5b8cff" }}
+              <h2
+                className="font-bold text-white leading-none"
+                style={{ fontSize: "clamp(52px, 6vw, 88px)" }}
               >
-                {s.value}
+                {c.title}
+              </h2>
+              <div className="mt-10">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold transition-colors duration-200 hover:bg-white/10"
+                  style={{ border: "1.5px solid rgba(255,255,255,0.35)" }}
+                >
+                  {c.learnMore} <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-              <div className="text-white/50 text-sm leading-snug">{s.label}</div>
             </motion.div>
-          ))}
-        </div>
 
+            {/* Publishers — vertically centered */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center"
+            >
+              <div className="w-full">
+                <div className="border-t border-white/25 pt-4 mb-4">
+                  <span className="text-xl font-bold text-white">{c.publishers.heading}</span>
+                </div>
+                <ul>
+                  {c.publishers.bullets.map((b, i) => (
+                    <li
+                      key={i}
+                      className="border-b border-white/10 py-4 text-white/60 text-sm leading-relaxed"
+                    >
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Advertisers — vertically centered */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-center"
+            >
+              <div className="w-full">
+                <div className="border-t border-white/25 pt-4 mb-4">
+                  <span className="text-xl font-bold text-white">{c.advertisers.heading}</span>
+                </div>
+                <ul>
+                  {c.advertisers.bullets.map((b, i) => (
+                    <li
+                      key={i}
+                      className="border-b border-white/10 py-4 text-white/60 text-sm leading-relaxed"
+                    >
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-4 gap-6 mt-14">
+            {c.stats.map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+              >
+                <div
+                  className="font-bold mb-1 leading-none"
+                  style={{ fontSize: "clamp(40px, 5vw, 72px)", color: "#5b8cff" }}
+                >
+                  {s.value}
+                </div>
+                <div className="text-white/45 text-sm leading-snug">{s.label}</div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
       </div>
-    </div>
     </section>
   );
 }
