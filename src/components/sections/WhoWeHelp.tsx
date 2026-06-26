@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "@/lib/i18n";
@@ -26,10 +27,10 @@ const COPY = {
       ],
     },
     stats: [
-      { value: "200%", label: "Engagement and Attention Lift" },
-      { value: "2.9X", label: "More Brand Recognition" },
-      { value: "34S", label: "Average Time Spent per Format" },
-      { value: "+30%", label: "Time Spent on Advertiser's Site" },
+      { numeric: 200, prefix: "", suffix: "%", label: "Engagement and Attention Lift" },
+      { numeric: 2.9,  prefix: "", suffix: "X",  label: "More Brand Recognition" },
+      { numeric: 34,   prefix: "", suffix: "S",  label: "Average Time Spent per Format" },
+      { numeric: 30,   prefix: "+", suffix: "%", label: "Time Spent on Advertiser's Site" },
     ],
   },
   fr: {
@@ -52,13 +53,71 @@ const COPY = {
       ],
     },
     stats: [
-      { value: "200%", label: "Lift d'engagement et d'attention" },
-      { value: "2,9X", label: "Meilleure reconnaissance de marque" },
-      { value: "34S", label: "Temps moyen passé par format" },
-      { value: "+30%", label: "Temps passé sur le site annonceur" },
+      { numeric: 200, prefix: "", suffix: "%", label: "Lift d'engagement et d'attention" },
+      { numeric: 2.9,  prefix: "", suffix: "X",  label: "Meilleure reconnaissance de marque" },
+      { numeric: 34,   prefix: "", suffix: "S",  label: "Temps moyen passé par format" },
+      { numeric: 30,   prefix: "+", suffix: "%", label: "Temps passé sur le site annonceur" },
     ],
   },
 };
+
+/* ── Fast count-up number ── */
+function CountUp({
+  numeric,
+  prefix,
+  suffix,
+}: {
+  numeric: number;
+  prefix: string;
+  suffix: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const isDecimal = !Number.isInteger(numeric);
+
+  const spring = useSpring(0, { stiffness: 280, damping: 28, mass: 0.6 });
+  const display = useTransform(spring, (v) =>
+    isDecimal ? v.toFixed(1) : Math.round(v).toString()
+  );
+
+  useEffect(() => {
+    if (isInView) spring.set(numeric);
+  }, [isInView, spring, numeric]);
+
+  return (
+    <span ref={ref} className="font-bold leading-none tabular-nums" style={{ color: "#5b8cff", fontSize: "clamp(40px, 5vw, 72px)" }}>
+      {prefix}
+      <motion.span>{display}</motion.span>
+      {suffix}
+    </span>
+  );
+}
+
+/* ── Animated text line (transparent → opaque sweep) ── */
+function FadeText({
+  children,
+  delay = 0,
+  className = "",
+  style = {},
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <motion.span
+      className={className}
+      style={style}
+      initial={{ opacity: 0, filter: "blur(8px)", y: 6 }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.span>
+  );
+}
 
 export function WhoWeHelp() {
   const { lang } = useLang();
@@ -70,7 +129,7 @@ export function WhoWeHelp() {
         className="relative overflow-hidden rounded-3xl w-full"
         style={{ background: "#07080f", minHeight: "90vh" }}
       >
-        {/* Glow blob — bright white, moving randomly across the section */}
+        {/* Glow blob */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -94,22 +153,21 @@ export function WhoWeHelp() {
             className="grid flex-1"
             style={{ gridTemplateColumns: "5fr 4fr 4fr", gap: "3.5rem", flex: 1 }}
           >
-            {/* Left col: big title top, white CTA button bottom */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col justify-between"
-              style={{ minHeight: 400 }}
-            >
-              <h2
-                className="font-extrabold text-white leading-none tracking-tight"
+            {/* Left: title + CTA */}
+            <div className="flex flex-col justify-between" style={{ minHeight: 400 }}>
+              <FadeText
+                className="block font-extrabold text-white leading-none tracking-tight"
                 style={{ fontSize: "clamp(52px, 5.5vw, 86px)" }}
+                delay={0}
               >
                 {c.title}
-              </h2>
-              <div>
+              </FadeText>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <Link
                   href="/about"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-colors duration-200 hover:bg-white/90"
@@ -117,85 +175,85 @@ export function WhoWeHelp() {
                 >
                   {c.learnMore} <ArrowRight className="w-4 h-4" />
                 </Link>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
 
-            {/* Publishers — vertically centered, no border above heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center"
-            >
+            {/* Publishers */}
+            <div className="flex items-center">
               <div className="w-full">
-                <p
-                  className="font-black text-white mb-5"
+                <FadeText
+                  className="block font-black text-white mb-5"
                   style={{ fontSize: "1.75rem" }}
+                  delay={0.1}
                 >
                   {c.publishers.heading}
-                </p>
+                </FadeText>
                 <ul>
                   {c.publishers.bullets.map((b, i) => (
                     <li
                       key={i}
-                      className="border-b py-4 text-white/60 text-sm leading-relaxed"
+                      className="border-b py-4 text-sm leading-relaxed overflow-hidden"
                       style={{ borderColor: "rgba(255,255,255,0.12)" }}
                     >
-                      {b}
+                      <FadeText
+                        className="block"
+                        style={{ color: "rgba(255,255,255,0.6)" }}
+                        delay={0.18 + i * 0.13}
+                      >
+                        {b}
+                      </FadeText>
                     </li>
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Advertisers — vertically centered, no border above heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center"
-            >
+            {/* Advertisers */}
+            <div className="flex items-center">
               <div className="w-full">
-                <p
-                  className="font-black text-white mb-5"
+                <FadeText
+                  className="block font-black text-white mb-5"
                   style={{ fontSize: "1.75rem" }}
+                  delay={0.15}
                 >
                   {c.advertisers.heading}
-                </p>
+                </FadeText>
                 <ul>
                   {c.advertisers.bullets.map((b, i) => (
                     <li
                       key={i}
-                      className="border-b py-4 text-white/60 text-sm leading-relaxed"
+                      className="border-b py-4 text-sm leading-relaxed overflow-hidden"
                       style={{ borderColor: "rgba(255,255,255,0.12)" }}
                     >
-                      {b}
+                      <FadeText
+                        className="block"
+                        style={{ color: "rgba(255,255,255,0.6)" }}
+                        delay={0.22 + i * 0.13}
+                      >
+                        {b}
+                      </FadeText>
                     </li>
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Stats row */}
+          {/* Stats row — count-up numbers */}
           <div className="grid grid-cols-4 gap-6 mt-14">
             {c.stats.map((s, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
+                <CountUp numeric={s.numeric} prefix={s.prefix} suffix={s.suffix} />
                 <div
-                  className="font-bold mb-1 leading-none"
-                  style={{ fontSize: "clamp(40px, 5vw, 72px)", color: "#5b8cff" }}
+                  className="text-sm leading-snug mt-2"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
                 >
-                  {s.value}
-                </div>
-                <div className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.45)" }}>
                   {s.label}
                 </div>
               </motion.div>
