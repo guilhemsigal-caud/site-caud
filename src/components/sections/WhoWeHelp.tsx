@@ -75,7 +75,7 @@ function CountUp({
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const isDecimal = !Number.isInteger(numeric);
 
-  const spring = useSpring(0, { stiffness: 280, damping: 28, mass: 0.6 });
+  const spring = useSpring(0, { stiffness: 140, damping: 28, mass: 0.6 });
   const display = useTransform(spring, (v) =>
     isDecimal ? v.toFixed(1) : Math.round(v).toString()
   );
