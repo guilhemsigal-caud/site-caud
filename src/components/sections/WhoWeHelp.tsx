@@ -68,7 +68,7 @@ export function WhoWeHelp() {
     <section className="px-4 md:px-5 py-4">
       <div
         className="relative overflow-hidden rounded-3xl w-full"
-        style={{ background: "#07080f", minHeight: 700 }}
+        style={{ background: "#07080f", minHeight: "90vh" }}
       >
         {/* Glow blob — bright white, moving randomly across the section */}
         <div
@@ -87,7 +87,7 @@ export function WhoWeHelp() {
 
         <div
           className="relative z-10 flex flex-col"
-          style={{ padding: "6rem 5rem 5rem", minHeight: 700 }}
+          style={{ padding: "6rem 5rem 5rem", minHeight: "90vh" }}
         >
           {/* Main 3-col grid */}
           <div
