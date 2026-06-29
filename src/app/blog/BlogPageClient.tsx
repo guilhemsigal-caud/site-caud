@@ -30,7 +30,7 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
   return (
     <main>
       {/* Header */}
-      <section className="pt-20 pb-12" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
+      <section className="py-20" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
         <div className="max-w-5xl mx-auto px-6 md:px-8">
           <span className="inline-block text-xs font-semibold tracking-widest uppercase text-ca-blue mb-4">{c.badge}</span>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3"
@@ -41,7 +41,7 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
         </div>
       </section>
 
-      <section className="py-14 pb-24" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
+      <section className="py-20" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
         <div className="max-w-5xl mx-auto px-6 md:px-8 rounded-2xl border border-ca-border p-8 md:p-10" style={{ background: "rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
 
           {/* Featured article */}
