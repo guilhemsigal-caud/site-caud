@@ -7,10 +7,14 @@ export interface BlogPost {
   readTime: string;
   accent: string;
   content: string;
+  author?: string;
+  coverImage?: string;
+  coverImageAlt?: string;
   fr?: {
     title: string;
     excerpt: string;
     readTime: string;
+    content?: string;
   };
 }
 

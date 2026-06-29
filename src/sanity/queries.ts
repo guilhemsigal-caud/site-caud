@@ -6,6 +6,9 @@ export const BLOG_POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | o
   "date": publishedAt,
   readTime,
   "accent": coalesce(accent, "#5b8cff"),
+  author,
+  "coverImage": coverImage.asset->url,
+  "coverImageAlt": coverImage.alt,
   content,
   fr
 }`;
@@ -18,6 +21,9 @@ export const BLOG_POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   "date": publishedAt,
   readTime,
   "accent": coalesce(accent, "#5b8cff"),
+  author,
+  "coverImage": coverImage.asset->url,
+  "coverImageAlt": coverImage.alt,
   content,
   fr
 }`;

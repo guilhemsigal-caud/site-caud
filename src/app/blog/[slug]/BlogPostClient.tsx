@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Clock, Calendar } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, Clock, Calendar, User } from "lucide-react";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { useLang } from "@/lib/i18n";
 import { useMemo } from "react";
@@ -43,6 +44,9 @@ export function BlogPostClient({ post, related }: { post: BlogPost; related: Blo
             </span>
             <span className="flex items-center gap-1.5 text-xs text-ca-muted"><Clock className="w-3.5 h-3.5" /> {readTime}</span>
             <span className="flex items-center gap-1.5 text-xs text-ca-muted"><Calendar className="w-3.5 h-3.5" /> {formattedDate}</span>
+            {post.author && (
+              <span className="flex items-center gap-1.5 text-xs text-ca-muted"><User className="w-3.5 h-3.5" /> {post.author}</span>
+            )}
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-6"
             style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -52,6 +56,16 @@ export function BlogPostClient({ post, related }: { post: BlogPost; related: Blo
           <div className="h-px w-full mb-0" style={{ background: `linear-gradient(to right, ${post.accent}, transparent)` }} />
         </div>
       </section>
+
+      {post.coverImage && (
+        <section className="bg-ca-dark pt-8 pb-0">
+          <div className="max-w-3xl mx-auto px-6 md:px-8">
+            <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: 340 }}>
+              <Image src={post.coverImage} alt={post.coverImageAlt ?? post.title} fill className="object-cover" sizes="768px" priority />
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-ca-dark py-12">
         <div className="max-w-3xl mx-auto px-6 md:px-8">
