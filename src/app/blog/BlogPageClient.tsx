@@ -29,20 +29,20 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
 
   return (
     <main>
-      {/* Header */}
-      <section className="py-20" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
+      <section className="py-16" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
         <div className="max-w-5xl mx-auto px-6 md:px-8">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-ca-blue mb-4">{c.badge}</span>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3"
-            style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-            {c.headline}
-          </h1>
-          <p className="text-ca-muted text-lg max-w-xl">{c.subtitle}</p>
-        </div>
-      </section>
+          {/* Header */}
+          <div className="mb-10">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-ca-blue mb-4">{c.badge}</span>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3"
+              style={{ background: "linear-gradient(135deg, #0e1025 0%, #3a4070 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              {c.headline}
+            </h1>
+            <p className="text-ca-muted text-lg max-w-xl">{c.subtitle}</p>
+          </div>
 
-      <section className="py-20" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
-        <div className="max-w-5xl mx-auto px-6 md:px-8 rounded-2xl border border-ca-border p-8 md:p-10" style={{ background: "rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
+          {/* Articles */}
+          <div className="rounded-2xl border border-ca-border p-8 md:p-10" style={{ background: "rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
 
           {/* Featured article */}
           <Link href={`/blog/${featured.slug}`} className="group block mb-14">
@@ -135,6 +135,7 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
               );
             })}
           </div>
+          </div>{/* end articles card */}
         </div>
       </section>
 
