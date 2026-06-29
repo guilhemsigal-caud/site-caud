@@ -30,7 +30,7 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
   return (
     <main>
       {/* Header */}
-      <section className="bg-ca-dark pt-20 pb-12 border-b border-ca-border">
+      <section className="bg-ca-dark pt-20 pb-16 border-b border-ca-border">
         <div className="max-w-5xl mx-auto px-6 md:px-8">
           <span className="inline-block text-xs font-semibold tracking-widest uppercase text-ca-blue mb-4">{c.badge}</span>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3"
