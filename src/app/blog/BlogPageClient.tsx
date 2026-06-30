@@ -29,8 +29,8 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
 
   return (
     <main>
-      <section className="flex flex-col items-center justify-center min-h-screen px-6 md:px-8" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
-        <div className="w-full max-w-5xl py-16">
+      <section className="py-12 px-6 md:px-8" style={{ background: "linear-gradient(160deg, #eef1ff 0%, #f5f7ff 50%, #e8f0fe 100%)" }}>
+        <div className="w-full max-w-5xl mx-auto">
           {/* Header */}
           <div className="mb-10">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-ca-blue mb-4">{c.badge}</span>
