@@ -1,17 +1,6 @@
-import { draftMode } from "next/headers";
-import { redirect } from "next/navigation";
-import { type NextRequest } from "next/server";
+import { defineEnableDraftMode } from "next-sanity/draft-mode";
+import { tokenClient } from "@/sanity/client";
 
-export async function GET(request: NextRequest) {
-  const secret = request.nextUrl.searchParams.get("secret");
-  const redirectTo = request.nextUrl.searchParams.get("redirect") ?? "/";
-
-  if (!process.env.SANITY_PREVIEW_SECRET || secret !== process.env.SANITY_PREVIEW_SECRET) {
-    return new Response("Invalid secret", { status: 401 });
-  }
-
-  const draft = await draftMode();
-  draft.enable();
-
-  redirect(redirectTo);
-}
+export const { GET } = defineEnableDraftMode({
+  client: tokenClient.withConfig({ token: process.env.SANITY_API_TOKEN }),
+});
