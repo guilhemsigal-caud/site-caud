@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { DraftModeBanner } from "@/components/DraftModeBanner";
 import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-ca-dark text-ca-text">
         <LanguageProvider>
+          <DraftModeBanner />
           <Header />
           <div className="flex-1 pt-16">{children}</div>
           <Footer />
