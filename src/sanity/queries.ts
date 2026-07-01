@@ -50,6 +50,15 @@ export const GALLERY_ITEM_QUERY = `*[_type == "galleryItem" && slug.current == $
   fr
 }`;
 
+export const TEAM_MEMBERS_QUERY = `*[_type == "teamMember"] | order(group asc, order asc, name asc) {
+  _id,
+  name,
+  role,
+  group,
+  "photo": photo.asset->url,
+  linkedin
+}`;
+
 export const BLOG_POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   "slug": slug.current,
   title,
