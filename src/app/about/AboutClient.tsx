@@ -117,18 +117,18 @@ export function AboutClient({ members }: { members: Member[] }) {
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-8">
                   {groupMembers.map((m) => (
                     <div key={m._id} className="flex flex-col items-center text-center gap-3">
-                      <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-ca-blue to-ca-mint flex items-center justify-center flex-shrink-0 ring-2 ring-ca-border">
+                      <div className="w-28 h-28 rounded-full overflow-hidden bg-gradient-to-br from-ca-blue to-ca-mint flex items-center justify-center flex-shrink-0 ring-2 ring-ca-border">
                         {m.photo ? (
-                          <Image src={m.photo} alt={m.name} width={80} height={80} className="w-full h-full object-cover grayscale" />
+                          <Image src={m.photo} alt={m.name} width={112} height={112} className="w-full h-full object-cover grayscale" />
                         ) : (
-                          <span className="text-sm font-bold text-[#0e1025]">
+                          <span className="text-base font-bold text-[#0e1025]">
                             {m.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
                           </span>
                         )}
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-ca-text leading-snug">{m.name}</div>
-                        <div className="text-xs text-ca-muted leading-snug mt-0.5">{m.role}</div>
+                        <div className="text-base font-semibold text-ca-text leading-snug">{m.name}</div>
+                        <div className="text-sm text-ca-muted leading-snug mt-0.5">{m.role}</div>
                       </div>
                     </div>
                   ))}
