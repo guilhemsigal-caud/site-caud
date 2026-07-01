@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://*.collectiveaudience.co https://js.hsforms.net https://*.hubspot.com",
               "img-src 'self' data: blob: https://*.collectiveaudience.co https://*.beop.io https://*.googleapis.com https://*.gstatic.com https://cdn.sanity.io https://*.hubspot.com https://*.hs-banner.com",
               "font-src 'self' data: https://*.collectiveaudience.co https://*.gstatic.com https://*.hubspot.com",
-              "frame-src 'self' https://*.collectiveaudience.co https://*.beop.io https://forms.hsforms.com https://*.hubspot.com",
+              "frame-src 'self' https://*.collectiveaudience.co https://*.beop.io https://forms.hsforms.com https://*.hubspot.com https://js.hsforms.net",
               "media-src 'self' https://*.collectiveaudience.co https://*.beop.io",
               "frame-ancestors 'self' http://localhost:3333 https://*.sanity.studio https://*.collectiveaudience.co",
             ].join("; "),
